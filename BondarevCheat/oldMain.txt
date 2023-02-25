@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using BondarevCheat.Function;
+
+namespace BondarevCheat
+{
+    public class Menu
+    {
+        [DllImport("User32.dll")]
+        public static extern short GetAsyncKeyState(int vKeys);
+        public static bool WallHack = false;
+        public static bool BunnyHop = false;
+
+        public static void Main()
+        {
+            //while (true)
+           // {
+            csgonotfound:
+               /* if (Process.GetProcessesByName("csgo").Length == 0)
+                {
+                    Console.WriteLine("Запустите CS GO");
+                    Thread.Sleep(5000);
+                    goto csgonotfound;
+                } */
+                runCheats start = new runCheats();
+                if (GetAsyncKeyState(97) != 0 || GetAsyncKeyState(35) != 0)
+                {
+                    WallHack = true;
+                    start.enable();
+                }
+                if (GetAsyncKeyState(98) != 0 || GetAsyncKeyState(40) != 0)
+                {
+                    BunnyHop = true;
+                    start.enable();
+                }
+                Console.WriteLine();
+                string sWallHack = "none";
+                string sBunnyHope = "none";
+                if (WallHack == true)
+                    sWallHack = "enabled";
+                else if (WallHack == false)
+                    sWallHack = "disabled";
+                if (BunnyHop == true)
+                    sBunnyHope = "enabled";
+                else if (BunnyHop == false)
+                    sBunnyHope = "disabled";
+                Console.WriteLine("\n1. WallHack [" + sWallHack + "]");
+                Console.WriteLine("1. BunnyHop [" + sBunnyHope + "]");
+                Thread.Sleep(100);
+                Console.Clear();
+                start.enable();
+            //}
+        }
+        public static void withMain()
+        {
+            Main();
+        } public void checkFunction ()
+        {
+            if (WallHack == false)
+            {
+                WallHack = false;
+                Main();
+            }
+            else if (BunnyHop == false)
+            {
+                BunnyHop = false;
+                Main();
+            }
+        }
+
+    }
+}
